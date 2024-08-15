@@ -1,0 +1,9 @@
+.list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* 5 колонок однакової ширини */
+  grid-template-rows: repeat(5, 1fr); /* 3 рядки однакової висоти */
+  grid-column-gap: 10px; /* Відстань між колонками */
+  grid-row-gap: 10px; /* Відстань між рядками */
+
+  list-style: none;
+}

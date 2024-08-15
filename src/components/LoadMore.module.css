@@ -1,0 +1,14 @@
+.buttonloadmore {
+  text-align: center;
+  background-color: #1228ee;
+  color: white;
+
+  width: 150px;
+  height: 40px;
+  border: none;
+  border-radius: 5px;
+}
+.containerlm {
+  display: flex;
+  justify-content: center;
+}
