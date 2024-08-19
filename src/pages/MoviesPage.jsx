@@ -16,7 +16,7 @@ const MoviesPage = () => {
       query,
     },
   };
-
+ 
   const searchMovies = (e) => {
     e.preventDefault();
     if (!query) return;

@@ -4,7 +4,7 @@ import MovieList from "../components/MovieList";
 import styles from "./HomePage.module.css";
 
 const HomePage = () => {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([]); 
   const url = "https://api.themoviedb.org/3/trending/movie/day";
   const options = {
     headers: {

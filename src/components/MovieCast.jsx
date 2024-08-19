@@ -42,7 +42,7 @@ const MovieCast = () => {
                   alt={actor.name}
                   style={{
                     width: "100px",
-                    height: "150px",
+                    height: "150px", 
                     marginRight: "10px",
                     objectFit: "cover",
                   }}
