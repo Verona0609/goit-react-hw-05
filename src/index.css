@@ -2,7 +2,7 @@ body {
   margin: 0;
   justify-content: center;
   display: flex;
-  background-color: rgb(92, 151, 240);
+  background-color: rgb(19, 19, 19);
 }
 
 h1 {
@@ -15,4 +15,7 @@ p {
 }
 
 ul {
+  list-style: none;
+  /*  display: flex; */
+  margin-bottom: 10px;
 }

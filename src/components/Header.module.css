@@ -1,0 +1,17 @@
+.linkheader {
+  width: 200px;
+  padding: 10px;
+
+  text-decoration: none;
+  background-color: rgb(14, 15, 17);
+  box-shadow: 0 4px 8px rgba(247, 245, 245, 0.835);
+  color: rgb(244, 241, 241);
+  display: flex;
+  justify-content: center;
+}
+.nav {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+  gap: 20px;
+}

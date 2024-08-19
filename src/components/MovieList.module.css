@@ -1,0 +1,13 @@
+.moviename {
+  text-decoration: none;
+  color: #a7a3a3;
+}
+.movieitem {
+  margin-bottom: 20px;
+  padding: 5px;
+  background-color: #e5e1e1;
+  background-color: rgb(14, 15, 17);
+  box-shadow: 0 4px 8px rgba(247, 245, 245, 0.35);
+  display: flex;
+  justify-content: center;
+}
