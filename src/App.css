@@ -10,3 +10,10 @@ ul {
   padding: 0; /* Видаляє внутрішні відступи */
   margin: 0; /* Видаляє зовнішні відступи */
 }
+
+.loading {
+  color: white;
+  box-shadow: 0 4px 8px rgba(247, 245, 245, 0.35);
+  display: flex;
+  justify-content: center;
+}
