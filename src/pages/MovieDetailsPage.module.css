@@ -28,6 +28,7 @@
 
 .goback {
   display: flex;
+
   background-color: rgb(14, 15, 17);
   box-shadow: 0 4px 8px rgba(247, 245, 245, 0.35);
   color: rgb(244, 241, 241);
@@ -36,6 +37,9 @@
   padding: 6px;
   border-radius: 8px;
   cursor: pointer;
+  text-decoration: none;
+
+  justify-content: center;
 }
 .info {
   margin-bottom: 30px;
