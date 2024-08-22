@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import {
   Link,
   Outlet,
@@ -13,39 +13,59 @@ const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
   const location = useLocation();
+  const [loading, setLoading] = useState(true);
+  const linkback = useRef(location.state?.from || "/movies");
   const navigate = useNavigate();
-  const url = `https://api.themoviedb.org/3/movie/${movieId}`;
-  const options = {
-    headers: {
-      Authorization:
-        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjM5NmM4MWIwZWQxMTc2NTRlMmQyZGMyZGUzODJhMiIsIm5iZiI6MTcyMzk4NTYxNi4wNzU2MDUsInN1YiI6IjY2YzFhNGFkNzFlYzg5YmQ4M2QwYmVjNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Xo-_qenK1-e498OGf8GcNLxw-4IRPnmGqChwDbCldz0",
-    },
-  };
 
-  useEffect(() => {
-    axios
-      .get(url, options)
-      .then((response) => {
-        setMovie(response.data);
-      })
-      .catch((error) => console.error(error));
-  }, [movieId]);
-
-  const handleGoBack = () => {
-    if (location.state && location.state.from) {
-      navigate(location.state.from);
-    } else {
-      navigate("/");
+  const getMovieDetails = async (movieId) => {
+    try {
+      const response = await axios.get(
+        `https://api.themoviedb.org/3/movie/${movieId}`,
+        {
+          headers: {
+            Authorization:
+              "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiIxZjM5NmM4MWIwZWQxMTc2NTRlMmQyZGMyZGUzODJhMiIsIm5iZiI6MTcyMzk4NTYxNi4wNzU2MDUsInN1YiI6IjY2YzFhNGFkNzFlYzg5YmQ4M2QwYmVjNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.Xo-_qenK1-e498OGf8GcNLxw-4IRPnmGqChwDbCldz0",
+          },
+        }
+      );
+      return response.data;
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+      throw error;
     }
   };
 
-  if (!movie) return <div>Loading...</div>;
+  useEffect(() => {
+    const fetchMovie = async () => {
+      try {
+        const movieDetails = await getMovieDetails(movieId);
+        setMovie(movieDetails);
+      } catch (error) {
+        console.error("Error fetching movie details:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchMovie();
+  }, [movieId]);
+
+  const handleGoBack = () => {
+    navigate(linkback.current);
+  };
+
+  if (loading) {
+    return <p>Loading...</p>;
+  }
+
+  if (!movie) return <div>No movie found</div>;
 
   return (
     <div>
-      <button className={styles.goback} onClick={handleGoBack}>
+      <button onClick={handleGoBack} className={styles.goback}>
+        {" "}
         Go back
       </button>
+
       <div className={styles.containerdetails}>
         <img
           className={styles.img}
