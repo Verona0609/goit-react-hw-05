@@ -1,12 +1,6 @@
 import axios from "axios";
 import { useEffect, useState, useRef } from "react";
-import {
-  Link,
-  Outlet,
-  useLocation,
-  useNavigate,
-  useParams,
-} from "react-router-dom";
+import { Link, Outlet, useLocation, useParams } from "react-router-dom";
 import styles from "./MovieDetails.module.css";
 
 const MovieDetailsPage = () => {
@@ -15,12 +9,12 @@ const MovieDetailsPage = () => {
   const location = useLocation();
   const [loading, setLoading] = useState(true);
   const linkback = useRef(location.state?.from || "/movies");
-  const navigate = useNavigate();
 
   const getMovieDetails = async (movieId) => {
     try {
       const response = await axios.get(
         `https://api.themoviedb.org/3/movie/${movieId}`,
+
         {
           headers: {
             Authorization:
@@ -49,10 +43,6 @@ const MovieDetailsPage = () => {
     fetchMovie();
   }, [movieId]);
 
-  const handleGoBack = () => {
-    navigate(linkback.current);
-  };
-
   if (loading) {
     return <p>Loading...</p>;
   }
@@ -61,10 +51,9 @@ const MovieDetailsPage = () => {
 
   return (
     <div>
-      <button onClick={handleGoBack} className={styles.goback}>
-        {" "}
+      <Link to={linkback.current} className={styles.goback}>
         Go back
-      </button>
+      </Link>
 
       <div className={styles.containerdetails}>
         <img
